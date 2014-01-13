@@ -12,6 +12,7 @@
 	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="assets/css/docs.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/font-awesome.css">
+	<link href="assets/css/toastr.css" rel="stylesheet" />
 	<link href="assets/css/docs.css" rel="stylesheet">
 	<link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
 	<link href="assets/css/style.css" rel="stylesheet" />
@@ -21,6 +22,9 @@
       <script src="assets/js/html5shiv.js"></script>
     <![endif]-->
 	<!-- /Styles -->
+	<style>
+
+	</style>
 
 </head>
 
@@ -63,13 +67,12 @@
 	<!-- container -->
 	<div class="container">
 		<!-- row -->
-		<div class="row">
-
+		<div class="row" style="margin-top: 20px;">
 			<!-- Navigation -->
 			<div class="span3 bs-docs-sidebar">
 				<ul class="nav nav-list bs-docs-sidenav">
 					<li><a href="#modals"><i class="icon-chevron-right"></i>Modal</a></li>
-					<li><a href="#tabs"><i class="icon-chevron-right"></i>Tab</a></li>
+					<li><a href="#tabs"><i class="icon-chevron-right"></i>Tabs</a></li>
 					<li><a href="#collapse"><i class="icon-chevron-right"></i>Collapsable panels</a></li>
 					<li><a href="#datatables"><i class="icon-chevron-right"></i>DataTables</a></li>
 					<li><a href="#tooltips"><i class="icon-chevron-right"></i>Tooltip</a></li>
@@ -1332,7 +1335,7 @@ $(document).ready(function() {
 					<h3>CBA</h3>
 					<p>To reduce the redundancy with javascript implementation in each of popovers we added a function <code>GetPopover(linkText, contentHTML)</code> to the UIHelpers.vb. The function will return a properly formatted HTML that creates a simple hyperlink with the popover. </p>
 					<pre>
-
+UIHelpers.GetPopover("Description", restorePoint.Description)
 					</pre>
 					<h3>Javascript</h3>
 					<p>Enable popovers via JavaScript:</p>
@@ -1440,413 +1443,54 @@ $(document).ready(function() {
 				<!-- /Popovers -->
 
 
-				<!-- Alert
-      ================================================== -->
+				<!-- Alert -->
 				<section id="alerts">
 					<div class="page-header">
-						<h1>Alert messages <small>bootstrap-alert.js</small></h1>
+						<h1>Alert messages <small>toastr.js</small></h1>
 					</div>
 
 
-					<h2>Example alerts</h2>
+					<h2>Example alerts / Usage</h2>
 					<p>Add dismiss functionality to all alert messages with this plugin.</p>
 					<div class="bs-docs-example">
-						<div class="alert fade in">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
-							<strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
-         
-						</div>
+						<button type="button" onclick="toastr.info('Here is an update that you were looking for!');" class="btn btn-info">Info</button>
+						<button type="button" onclick="toastr.warning('This might not be a good idea!', 'Watch out!');" class="btn btn-warning">Warning</button>
+						<button type="button" onclick="toastr.success('Whatever you did - you did right!', 'Congrats!');" class="btn btn-success">Success</button>
+						<button type="button" onclick="toastr.error('Something went terribly wrong!', 'Ooops!');" class="btn btn-danger">Error</button>
+						<button type="button" onclick="toastr.clear();" class="btn">Clear</button>
 					</div>
 
-					<div class="bs-docs-example">
-						<div class="alert alert-block alert-error fade in">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
-							<h4 class="alert-heading">Oh snap! You got an error!</h4>
-							<p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
-							<p>
-								<a class="btn btn-danger" href="#">Take this action</a> <a class="btn" href="#">Or do this</a>
-							</p>
-						</div>
-					</div>
-
-
-					<hr class="bs-docs-separator">
-
-
-					<h2>Usage</h2>
-					<p>Enable dismissal of an alert via JavaScript:</p>
-					<pre class="prettyprint linenums">$(".alert").alert()</pre>
-
-					<h3>Markup</h3>
-					<p>Just add <code>data-dismiss="alert"</code> to your close button to automatically give an alert close functionality.</p>
-					<pre class="prettyprint linenums">&lt;a class="close" data-dismiss="alert" href="#"&gt;&amp;times;&lt;/a&gt;</pre>
-
-					<h3>Methods</h3>
-					<h4>$().alert()</h4>
-					<p>Wraps all alerts with close functionality. To have your alerts animate out when closed, make sure they have the <code>.fade</code> and <code>.in</code> class already applied to them.</p>
-					<h4>.alert('close')</h4>
-					<p>Closes an alert.</p>
-					<pre class="prettyprint linenums">$(".alert").alert('close')</pre>
-
-
-					<h3>Events</h3>
-					<p>Bootstrap's alert class exposes a few events for hooking into alert functionality.</p>
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th style="width: 150px;">Event</th>
-								<th>Description</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>close</td>
-								<td>This event fires immediately when the <code>close</code> instance method is called.</td>
-							</tr>
-							<tr>
-								<td>closed</td>
-								<td>This event is fired when the alert has been closed (will wait for css transitions to complete).</td>
-							</tr>
-						</tbody>
-					</table>
-					<pre class="prettyprint linenums">
-$('#my-alert').bind('closed', function () {
-  // do something…
-})
-</pre>
-				</section>
-
-
-
-
-
-
-
-
-
-				<!-- Carousel
-          ================================================== -->
-				<section id="carousel">
-					<div class="page-header">
-						<h1>Carousel <small>bootstrap-carousel.js</small></h1>
-					</div>
-
-					<h2>Example carousel</h2>
-					<p>The slideshow below shows a generic plugin and component for cycling through elements like a carousel.</p>
-					<div class="bs-docs-example">
-						<div id="myCarousel" class="carousel slide">
-							<ol class="carousel-indicators">
-								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-								<li data-target="#myCarousel" data-slide-to="1"></li>
-								<li data-target="#myCarousel" data-slide-to="2"></li>
-							</ol>
-							<div class="carousel-inner">
-								<div class="item active">
-									<img src="assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
-									<div class="carousel-caption">
-										<h4>First Thumbnail label</h4>
-										<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-									</div>
-								</div>
-								<div class="item">
-									<img src="assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="">
-									<div class="carousel-caption">
-										<h4>Second Thumbnail label</h4>
-										<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-									</div>
-								</div>
-								<div class="item">
-									<img src="assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="">
-									<div class="carousel-caption">
-										<h4>Third Thumbnail label</h4>
-										<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-									</div>
-								</div>
-							</div>
-							<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-							<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-						</div>
-					</div>
-					<pre class="prettyprint linenums">
-&lt;div id="myCarousel" class="carousel slide"&gt;
-  &lt;ol class="carousel-indicators"&gt
-    &lt;li data-target="#myCarousel" data-slide-to="0" class="active"&gt&lt;/li&gt
-    &lt;li data-target="#myCarousel" data-slide-to="1"&gt&lt;/li&gt
-    &lt;li data-target="#myCarousel" data-slide-to="2"&gt&lt;/li&gt
-  &lt;/ol&gt
-  &lt;!-- Carousel items --&gt;
-  &lt;div class="carousel-inner"&gt;
-    &lt;div class="active item"&gt;…&lt;/div&gt;
-    &lt;div class="item"&gt;…&lt;/div&gt;
-    &lt;div class="item"&gt;…&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;!-- Carousel nav --&gt;
-  &lt;a class="carousel-control left" href="#myCarousel" data-slide="prev"&gt;&amp;lsaquo;&lt;/a&gt;
-  &lt;a class="carousel-control right" href="#myCarousel" data-slide="next"&gt;&amp;rsaquo;&lt;/a&gt;
-&lt;/div&gt;
+<pre class="prettyprint linenums">
+&lt;button type="button" onclick="toastr.info('Here is an update that you were looking for!');" class="btn btn-info"&gt;Info&lt;/button&gt;
+&lt;button type="button" onclick="toastr.warning('This might not be a good idea!', 'Watch out!');" class="btn btn-warning"&gt;Warning&lt;/button&gt;
+&lt;button type="button" onclick="toastr.success('Whatever you did - you did right!', 'Congrats!');" class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button type="button" onclick="toastr.error('Something went terribly wrong!', 'Ooops!');" class="btn btn-danger"&gt;Error&lt;/button&gt;
+&lt;button type="button" onclick="toastr.clear();" class="btn"&gt;Clear&lt;/button&gt;
 </pre>
 
-					<div class="alert alert-warning">
-						<strong>Heads up!</strong>
-						When implementing this carousel, remove the images we have provided and replace them with your own.
-           
-					</div>
-
-
-					<hr class="bs-docs-separator">
-
-
-					<h2>Usage</h2>
-
-					<h3>Via data attributes</h3>
-					<p>Use data attributes to easily control the position of the carousel. <code>data-slide</code> accepts the keywords <code>prev</code> or <code>next</code>, which alters the slide position relative to it's current position. Alternatively, use <code>data-slide-to</code> to pass a raw slide index to the carousel <code>data-slide-to="2"</code>, which jump's the slide position to a particular index beginning with <code>0</code>.</p>
-
-					<h3>Via JavaScript</h3>
-					<p>Call carousel manually with:</p>
-					<pre class="prettyprint linenums">$('.carousel').carousel()</pre>
-
-					<h3>Options</h3>
-					<p>Options can be passed via data attributes or JavaScriptz. For data attributes, append the option name to <code>data-</code>, as in <code>data-interval=""</code>.</p>
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th style="width: 100px;">Name</th>
-								<th style="width: 50px;">type</th>
-								<th style="width: 50px;">default</th>
-								<th>description</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>interval</td>
-								<td>number</td>
-								<td>5000</td>
-								<td>The amount of time to delay between automatically cycling an item. If false, carousel will not automatically cycle.</td>
-							</tr>
-							<tr>
-								<td>pause</td>
-								<td>string</td>
-								<td>"hover"</td>
-								<td>Pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave.</td>
-							</tr>
-						</tbody>
-					</table>
-
-					<h3>Methods</h3>
-					<h4>.carousel(options)</h4>
-					<p>Initializes the carousel with an optional options <code>object</code> and starts cycling through items.</p>
-					<pre class="prettyprint linenums">
-$('.carousel').carousel({
-  interval: 2000
-})
+					<h2>CBA Notifications</h2>
+					<p>
+						Alternatevely, a mechanism for updates was implemented in framework for CBA. It allows you to add the alert to the queue to be displayed to the end user. To add an alert to the queue simply call the <code>AddAlert()</code> method on the Framework.
+					</p>
+<pre class="prettyprint linenums">
+Framework.AddAlert("Alert header", "Body of the alert", ViewModels.AlertType.Success)
 </pre>
-					<h4>.carousel('cycle')</h4>
-					<p>Cycles through the carousel items from left to right.</p>
-					<h4>.carousel('pause')</h4>
-					<p>Stops the carousel from cycling through items.</p>
-					<h4>.carousel(number)</h4>
-					<p>Cycles the carousel to a particular frame (0 based, similar to an array).</p>
-					<h4>.carousel('prev')</h4>
-					<p>Cycles to the previous item.</p>
-					<h4>.carousel('next')</h4>
-					<p>Cycles to the next item.</p>
-
-					<h3>Events</h3>
-					<p>Bootstrap's carousel class exposes two events for hooking into carousel functionality.</p>
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th style="width: 150px;">Event</th>
-								<th>Description</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>slide</td>
-								<td>This event fires immediately when the <code>slide</code> instance method is invoked.</td>
-							</tr>
-							<tr>
-								<td>slid</td>
-								<td>This event is fired when the carousel has completed its slide transition.</td>
-							</tr>
-						</tbody>
-					</table>
 				</section>
-
-
-
-				<!-- Typeahead
-          ================================================== -->
-				<section id="typeahead">
-					<div class="page-header">
-						<h1>Typeahead <small>bootstrap-typeahead.js</small></h1>
-					</div>
-
-
-					<h2>Example</h2>
-					<p>A basic, easily extended plugin for quickly creating elegant typeaheads with any form text input.</p>
-					<div class="bs-docs-example" style="background-color: #f5f5f5;">
-						<input type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-					</div>
-					<pre class="prettyprint linenums">&lt;input type="text" data-provide="typeahead"&gt;</pre>
-					<p>You'll want to set <code>autocomplete="off"</code> to prevent default browser menus from appearing over the Bootstrap typeahead dropdown.</p>
-
-					<hr class="bs-docs-separator">
-
-
-					<h2>Usage</h2>
-
-					<h3>Via data attributes</h3>
-					<p>Add data attributes to register an element with typeahead functionality as shown in the example above.</p>
-
-					<h3>Via JavaScript</h3>
-					<p>Call the typeahead manually with:</p>
-					<pre class="prettyprint linenums">$('.typeahead').typeahead()</pre>
-
-					<h3>Options</h3>
-					<p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code>, as in <code>data-source=""</code>.</p>
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th style="width: 100px;">Name</th>
-								<th style="width: 50px;">type</th>
-								<th style="width: 100px;">default</th>
-								<th>description</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>source</td>
-								<td>array, function</td>
-								<td>[ ]</td>
-								<td>The data source to query against. May be an array of strings or a function. The function is passed two arguments, the <code>query</code> value in the input field and the <code>process</code> callback. The function may be used synchronously by returning the data source directly or asynchronously via the <code>process</code> callback's single argument.</td>
-							</tr>
-							<tr>
-								<td>items</td>
-								<td>number</td>
-								<td>8</td>
-								<td>The max number of items to display in the dropdown.</td>
-							</tr>
-							<tr>
-								<td>minLength</td>
-								<td>number</td>
-								<td>1</td>
-								<td>The minimum character length needed before triggering autocomplete suggestions</td>
-							</tr>
-							<tr>
-								<td>matcher</td>
-								<td>function</td>
-								<td>case insensitive</td>
-								<td>The method used to determine if a query matches an item. Accepts a single argument, the <code>item</code> against which to test the query. Access the current query with <code>this.query</code>. Return a boolean <code>true</code> if query is a match.</td>
-							</tr>
-							<tr>
-								<td>sorter</td>
-								<td>function</td>
-								<td>exact match,<br>
-									case sensitive,<br>
-									case insensitive</td>
-								<td>Method used to sort autocomplete results. Accepts a single argument <code>items</code> and has the scope of the typeahead instance. Reference the current query with <code>this.query</code>.</td>
-							</tr>
-							<tr>
-								<td>updater</td>
-								<td>function</td>
-								<td>returns selected item</td>
-								<td>The method used to return selected item. Accepts a single argument, the <code>item</code> and has the scope of the typeahead instance.</td>
-							</tr>
-							<tr>
-								<td>highlighter</td>
-								<td>function</td>
-								<td>highlights all default matches</td>
-								<td>Method used to highlight autocomplete results. Accepts a single argument <code>item</code> and has the scope of the typeahead instance. Should return html.</td>
-							</tr>
-						</tbody>
-					</table>
-
-					<h3>Methods</h3>
-					<h4>.typeahead(options)</h4>
-					<p>Initializes an input with a typeahead.</p>
-				</section>
-
-
-
-				<!-- Affix
-          ================================================== -->
-				<section id="affix">
-					<div class="page-header">
-						<h1>Affix <small>bootstrap-affix.js</small></h1>
-					</div>
-
-					<h2>Example</h2>
-					<p>The subnavigation on the left is a live demo of the affix plugin.</p>
-
-					<hr class="bs-docs-separator">
-
-					<h2>Usage</h2>
-
-					<h3>Via data attributes</h3>
-					<p>To easily add affix behavior to any element, just add <code>data-spy="affix"</code> to the element you want to spy on. Then use offsets to define when to toggle the pinning of an element on and off.</p>
-
-					<pre class="prettyprint linenums">&lt;div data-spy="affix" data-offset-top="200"&gt;...&lt;/div&gt;</pre>
-
-					<div class="alert alert-info">
-						<strong>Heads up!</strong>
-						You must manage the position of a pinned element and the behavior of its immediate parent. Position is controlled by <code>affix</code>, <code>affix-top</code>, and <code>affix-bottom</code>. Remember to check for a potentially collapsed parent when the affix kicks in as it's removing content from the normal flow of the page.
-           
-					</div>
-
-					<h3>Via JavaScript</h3>
-					<p>Call the affix plugin via JavaScript:</p>
-					<pre class="prettyprint linenums">$('#navbar').affix()</pre>
-
-					<h3>Options</h3>
-					<p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code>, as in <code>data-offset-top="200"</code>.</p>
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th style="width: 100px;">Name</th>
-								<th style="width: 100px;">type</th>
-								<th style="width: 50px;">default</th>
-								<th>description</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>offset</td>
-								<td>number | function | object</td>
-								<td>10</td>
-								<td>Pixels to offset from screen when calculating position of scroll. If a single number is provided, the offset will be applied in both top and left directions. To listen for a single direction, or multiple unique offsets, just provide an object <code>offset: { x: 10 }</code>. Use a function when you need to dynamically provide an offset (useful for some responsive designs).</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-
-
+				<!-- /Alert -->
 
 			</div>
 		</div>
-
+		<!-- /row -->
 	</div>
+	<!-- /container -->
 
-
-
-	<!-- Footer
-    ================================================== -->
+	<!-- Footer -->
 	<footer class="footer">
 		<div class="container">
-			<p>Designed and built with all the love in the world by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.</p>
-			<p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-			<p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-			<ul class="footer-links">
-				<li><a href="http://blog.getbootstrap.com">Blog</a></li>
-				<li class="muted">&middot;</li>
-				<li><a href="https://github.com/twitter/bootstrap/issues?state=open">Issues</a></li>
-				<li class="muted">&middot;</li>
-				<li><a href="https://github.com/twitter/bootstrap/blob/master/CHANGELOG.md">Changelog</a></li>
-			</ul>
+			<p>Common Census, Inc. 2014</p>
 		</div>
 	</footer>
-
-
+	<!-- /Footer -->
 
 	<!-- Javascript -->
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -1869,7 +1513,7 @@ $('.carousel').carousel({
 	<script src="assets/js/application.js"></script>
 	<script src="assets/js/jquery.dataTables.js"></script>
 	<script src="assets/js/DT_bootstrap.js"></script>
-
+	<script src="assets/js/toastr.js"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function () {
@@ -1891,6 +1535,10 @@ $('.carousel').carousel({
 
 			setTableHeaders();
 			$('th').click(setTableHeaders);
+			toastr.options = {
+				"positionClass": "toast-bottom-right",
+			}
+
 		});
 
 		function setTableHeaders() {
