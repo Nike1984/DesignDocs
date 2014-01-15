@@ -66,13 +66,352 @@
 			<!-- Navigation -->
 			<div class="span3 bs-docs-sidebar">
 				<ul class="nav nav-list bs-docs-sidenav">
-					<li><a href="#typography"><i class="icon-chevron-right"></i>Template 1</a></li>
+					<li><a href="#modal"><i class="icon-chevron-right"></i>Modal Templates</a></li>
+					<li><a href="#form"><i class="icon-chevron-right"></i>Form Template</a></li>
 				</ul>
 			</div>
 			<!-- /Navigation -->
 
 			<!-- Main -->
 			<div class="span9">
+				<!--Modal -->
+				<section id="modal">
+					<div class="page-header">
+						<h1>Modal Popups</h1>
+					</div>
+
+					<h2>Modal confirmation dialog</h2>
+					<p>
+						While it might be fine to use standard Javascript <a href="javascript:alert('this is not cool!')">alerts</a> for development their use for release is discouraged. Instead we should use <a href="#modalDialogSample" role="button" data-toggle="modal"> modal dialogs</a>.
+					</p>
+					<!-- Modal Sample -->
+					<div id="modalDialogSample" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalSample" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 id="ModalSample">Sample Modal Dialog</h4>
+						</div>
+						<div class="modal-body">
+							<p>Modal dialogs' body</p>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary" data-dismiss="modal" style="width:100px">Ok</button>
+							<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true" style="width:100px">Close</button>
+						</div>
+					</div>
+					<!-- /Modal Sample -->
+
+					<h3>Simple confirmation dialog</h3>
+					<p>
+						The easiest way to add a confimration for an event in .Net is to create a standard clientside control that displays a modal popup and make the confirmation button a server side control that will be used to trigger an event.
+					</p>
+					<div class="bs-docs-example">
+						<a href="#modalDialogSampleDelete" role="button" data-toggle="modal" class="btn btn-danger">Delete</a>
+
+						<div id="modalDialogSampleDelete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalSample" aria-hidden="true">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 id="ModalSample">Sample Modal Dialog</h4>
+							</div>
+							<div class="modal-body">
+								<p>Are you sure you want to delete this?</p>
+							</div>
+							<div class="modal-footer">
+								<button class="btn btn-danger" data-dismiss="modal" style="width:100px">Delete</button>
+								<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true" style="width:100px">Close</button>
+							</div>
+						</div>
+					</div>
+
+					<pre class="prettyprint linenums">
+&lt;a href="#modalDialogSampleDelete" role="button" data-toggle="modal" class="btn btn-danger"&gt;Delete&lt;/a&gt;
+
+&lt;div id="modalDialogSampleDelete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalSample" aria-hidden="true"&gt;
+	&lt;div class="modal-header"&gt;
+		&lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;×&lt;/button&gt;
+		&lt;h4 id="ModalSample"&gt;Sample Modal Dialog&lt;/h4&gt;
+	&lt;/div&gt;
+	&lt;div class="modal-body"&gt;
+		&lt;p&gt;Are you sure you want to delete this?&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="modal-footer"&gt;.
+		&lt;asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-primary" data-loading-text="Processing..." Text="Delete Division" /&gt;
+		&lt;button class="btn btn-danger" style="width:100px"&gt;Delete&lt;/button&gt;
+		&lt;button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true" style="width:100px"&gt;Close&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					</pre>
+
+					<h3>Confirmation dialog inside of the repeater control</h3>
+					<p>Often times confirmation dialogs need to be added to each of the element inside of your repeater control (gridview, repeater, datagrid, etc.). This is slightly more complicated. We have added a helper class <code>confirmDialog(source, target)</code> to the <code>utils.js</code> that we can use. 
+					</p>
+					<div class="bs-docs-example">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Element</th>
+									<th>Command</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Element #1</td>
+									<td><a href="#modalDialogRepeaterDelete" role="button" data-toggle="modal" class="btn btn-danger">Delete</a></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Element #2</td>
+									<td><a href="#modalDialogRepeaterDelete" role="button" data-toggle="modal" class="btn btn-danger">Delete</a></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Element #3</td>
+									<td><a href="#modalDialogRepeaterDelete" role="button" data-toggle="modal" class="btn btn-danger">Delete</a></td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Element #4</td>
+									<td><a href="#modalDialogRepeaterDelete" role="button" data-toggle="modal" class="btn btn-danger">Delete</a></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div id="modalDialogRepeaterDelete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalSample" aria-hidden="true">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 id="ModalSample">Repeater confirmation dialog</h4>
+							</div>
+							<div class="modal-body">
+								<p>Are you sure you want to delete this element?</p>
+							</div>
+							<div class="modal-footer">
+								<button class="btn btn-danger" data-dismiss="modal" style="width:100px">Delete</button>
+								<button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true" style="width:100px">Close</button>
+							</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums">
+&lt;!-- Gridview Control --&gt;
+&lt;asp:GridView ID="gridviewExample" CssClass="table table-striped table-hover" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False" &gt;
+	&lt;Columns&gt;
+		&lt;asp:TemplateField HeaderStyle-CssClass="tablehead leftcell" HeaderText="#"&gt;
+			&lt;ItemTemplate&gt;
+				&lt;asp:Literal ID="ltNumber" runat="server" /&gt;
+			&lt;/ItemTemplate&gt;
+		&lt;/asp:TemplateField&gt;
+		&lt;asp:TemplateField HeaderText="Element" HeaderStyle-CssClass="tablehead midcell" &gt;
+			&lt;ItemTemplate&gt;
+				&lt;asp:Literal ID="ltElement" runat="server" /&gt;
+			&lt;/ItemTemplate&gt;
+		&lt;/asp:TemplateField&gt;
+		&lt;asp:TemplateField HeaderText="Command" HeaderStyle-CssClass="tablehead rightcell"&gt;
+			&lt;ItemTemplate&gt;
+				&lt;asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" /&gt;
+				&lt;a href="#" class="btn btn-danger" onclick="confirmDialog(this, '#modalDialogRepeaterDelete');"&gt;Delete&lt;/a&gt;
+			&lt;/ItemTemplate&gt;
+		&lt;/asp:TemplateField&gt;
+	&lt;/Columns&gt;
+&lt;/asp:GridView&gt;
+&lt;!-- /Gridview Control --&gt;
+
+&lt;!-- Modal Dialog --&gt;
+&lt;div id="modalDialogRepeaterDelete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalSample" aria-hidden="true"&gt;
+	&lt;div class="modal-header"&gt;
+		&lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;×&lt;/button&gt;
+		&lt;h4 id="ModalSample"&gt;Repeater confirmation dialog&lt;/h4&gt;
+	&lt;/div&gt;
+	&lt;div class="modal-body"&gt;
+		&lt;p&gt;Are you sure you want to delete this element?&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="modal-footer"&gt;
+		&lt;button class="btn btn-danger" data-dismiss="modal" style="width:100px"&gt;Delete&lt;/button&gt;
+		&lt;button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true" style="width:100px"&gt;Close&lt;/button&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- /Modal Dialog --&gt;
+					</pre>
+					<h2>Modal with iframe</h2>
+					<p>
+						Including <code>iframe</code> in your modal popup is simple! Just add the <code>&lt;iframe&gt;</code> element with the <code>width</code> attribute set to 100% and desired <code>height</code> and you should be all set.
+					</p>
+					<div class="bs-docs-example">
+						<a href="#modalWithIframe" class="btn btn-primary" data-toggle="modal">Show Modal Popup</a>
+						<div id="modalWithIframe" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalSample" aria-hidden="true">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 id="ModalSample">Sample iframe</h4>
+							</div>
+							<div class="modal-body">
+								<iframe src="sampleIframe.html" width="100%" height="300" seamless="seamless"></iframe>
+							</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums">
+&lt;a href="#modalWithIframe" class="btn btn-primary" data-toggle="modal"&gt;Show Modal Popup&lt;/a&gt;
+
+&lt;div id="modalWithIframe" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalSample" aria-hidden="true"&gt;
+	&lt;div class="modal-header"&gt;
+		&lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;×&lt;/button&gt;
+		&lt;h4 id="ModalSample"&gt;Sample iframe&lt;/h4&gt;
+	&lt;/div&gt;
+	&lt;div class="modal-body"&gt;
+		&lt;iframe src="sampleIframe.html" width="100%" height="300" seamless="seamless"&gt;&lt;/iframe&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					</pre>
+
+					<h2>Modal with Asp.Net User Control</h2>
+					<p>Alternatively a user control might be included in place of the iframe. To do that we would need to add the user control to the body of the modal popup and trigger the modal display in our code-behind</p>
+					<p>Add the modal popup control in the page markup
+					<pre class="prettyprint linenums">
+&lt;div id="modalWithUserControl" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalSample" aria-hidden="true"&gt;
+	&lt;div class="modal-header"&gt;
+		&lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;×&lt;/button&gt;
+		&lt;h4 id="ModalSample"&gt;Sample iframe&lt;/h4&gt;
+	&lt;/div&gt;
+	&lt;div class="modal-body"&gt;
+		&lt;uc1:wcSampleUserControl ID="ucSample" runat="server" /&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					</pre>
+					<p>In your code behind - initiate the user control and display the popup</p>
+					<pre class="prettyprint linenums">
+Public Sub ShowPopup()
+	'Init control here
+	ucSample.visible = True
+	ScriptManager.RegisterStartupScript(Me, Me.GetType(), "displayModal", "$('modalWithUserControl').modal('show');", True)
+End Sub
+					</pre>
+				</section>
+				<!--/Modal-->
+				<!--Forms -->
+				<section id="form">
+					<h1>Forms</h1>
+					<p>While we can still add forms the traditional way (tables) bootstrap contains a series of classes that make adding good looking forms really easy.</p>
+					<h2>Basic form</h2>
+					<p>The basic form consists of the collection of div elements with the class <code>control-group</code> nested inside of the container with the <code>form-horizontal</code> class. 
+					<div class="bs-docs-example">
+						<div class="form-horizontal">
+							<div class="control-group">
+								<label class="control-label" for="txtLogin">Login</label>
+								<div class="controls">
+									<input type="text" class="input-large" placeholder="Login" id="txtLogin">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="txtPassword">Password</label>
+								<div class="controls">
+									<input type="password" class="input-large" placeholder="Password" id="txtPassword" />
+								</div>
+							</div>
+							<div class="control-group bordertop thick">
+								<button id="btnSubitSimpleForm" class="btn btn-primary">Submit</button>
+								<button id="btnCancelSimpleForm" class="btn btn-inverse">Cancel</button>
+							</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums">
+&lt;div class="form-horizontal"&gt;
+	&lt;div class="control-group"&gt;
+		&lt;label class="control-label" for="&lt;%=txtLogin.ClientID%&gt;"&gt;Login&lt;/label&gt;
+		&lt;div class="controls"&gt;
+			&lt;asp:TextBox ID="txtLogin" runat="server" CssClass="input-large mandatory" placeholder="Login" /&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class="control-group"&gt;
+		&lt;label class="control-label" for="&lt;%=txtPassword.ClientID%&gt;"&gt;Password&lt;/label&gt;
+		&lt;div class="controls"&gt;
+			&lt;asp:TextBox ID="txtPassword" runat="server" CssClass="input-large mandatory" TextMode="Password" placeholder="Password" /&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="control-group bordertop thick"&gt;
+	&lt;asp:LinkButton ID="btnSumbitSimpleForm" runat="server" CssClass="btn btn-primary"&gt;Submit&lt;/asp:LinkButton&gt;
+	&lt;asp:LinkButton ID="btnCancelSimpleForm" runat="server" CausesValidation="false" CssClass="btn btn-inverse"&gt;Cancel&lt;/asp:LinkButton&gt;
+&lt;/div&gt;
+					</pre>
+
+					<h2>Handling errors</h2>
+					<p>There are several ways to display error to the user following an unsuccessfull form submission. </p>
+					<h3>Form validation errors</h3>
+					<p>When form fails validation the field the message should appear right next to the field that is invalid. The validator will use a class <code>alerts</code> which will align with any field inside of the <code>controls</code> container.
+					<div class="bs-docs-example">
+						<div class="form-horizontal">
+							<div class="control-group">
+								<label class="control-label" for="txtLogin">Login</label>
+								<div class="controls">
+									<input type="text" class="input-large" placeholder="Login" id="txtLogin">
+									<span class="alerts">Login cannot be blank</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="txtPassword">Password</label>
+								<div class="controls">
+									<input type="password" class="input-large" placeholder="Password" id="txtPassword" />
+									<span class="alerts">Password cannot be blank</span>
+								</div>
+							</div>
+							<div class="control-group bordertop thick">
+								<button id="btnSubitValidatedForm" class="btn btn-primary">Submit</button>
+								<button id="btnCancelValidatedForm" class="btn btn-inverse">Cancel</button>
+							</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums">
+&lt;div class="form-horizontal"&gt;
+	&lt;div class="control-group"&gt;
+		&lt;label class="control-label" for="&lt;%=txtLogin.ClientID%&gt;"&gt;Login&lt;/label&gt;
+		&lt;div class="controls"&gt;
+			&lt;asp:TextBox ID="txtLogin" runat="server" CssClass="input-large mandatory" placeholder="Login" /&gt;
+			&lt;asp:RequiredFieldValidator ID="rfvLogin" runat="server" CssClass="alerts" ControlToValidate="txtLogin" ErrorMessage="Login field cannot be empty!" Display="Dynamic"&gt;&lt;/asp:RequiredFieldValidator&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class="control-group"&gt;
+		&lt;label class="control-label" for="&lt;%=txtPassword.ClientID%&gt;"&gt;Password&lt;/label&gt;
+		&lt;div class="controls"&gt;
+			&lt;asp:TextBox ID="txtPassword" runat="server" CssClass="input-large mandatory" TextMode="Password" placeholder="Password" /&gt;
+			&lt;asp:RequiredFieldValidator ID="rfvPassword" runat="server" CssClass="alerts" ControlToValidate="txtPassword" ErrorMessage="Password field cannot be empty!" Display="Dynamic"&gt;&lt;/asp:RequiredFieldValidator&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="control-group bordertop thick"&gt;
+	&lt;asp:LinkButton ID="btnSubitValidatedForm" runat="server" CssClass="btn btn-primary"&gt;Submit&lt;/asp:LinkButton&gt;
+	&lt;asp:LinkButton ID="btnCancelValidatedForm" runat="server" CausesValidation="false" CssClass="btn btn-inverse"&gt;Cancel&lt;/asp:LinkButton&gt;
+&lt;/div&gt;
+					</pre>
+					<h3>Form errors</h3>
+					<p>When you need to display an error to the user that is not a validation error this can be handled using built in <code>alert</code> component.
+						Simply add a container with the class <code>alert</code> to the top of the form and trigger the display server side</p>
+
+					<div class="bs-docs-example">
+						<div class="form-horizontal">
+							<div class="alert alert-error">
+								<strong>Error!</strong> We encountered an error while processing your request.
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="txtLogin">Login</label>
+								<div class="controls">
+									<input type="text" class="input-large" placeholder="Login" id="txtLogin">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="txtPassword">Password</label>
+								<div class="controls">
+									<input type="password" class="input-large" placeholder="Password" id="txtPassword" />
+								</div>
+							</div>
+							<div class="control-group bordertop thick">
+								<button id="btnSubitValidatedForm" class="btn btn-primary">Submit</button>
+								<button id="btnCancelValidatedForm" class="btn btn-inverse">Cancel</button>
+							</div>
+						</div>
+					</div>
+					<pre class="prettyprint linenums">
+					</pre>
+
+				<!-- /Forms -->
 
 			</div>
 			<!-- /Main -->

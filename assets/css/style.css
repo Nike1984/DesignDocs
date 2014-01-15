@@ -21,6 +21,11 @@ body, html {
 	line-height: 22px;
 }
 
+span.alerts {
+	display: inline;
+	margin-left: 5px;
+}
+
 
 .instructions, .warnings {
 	display: block;
@@ -133,7 +138,7 @@ a.anchor, a.anchor:visited, a.anchor:active, a.anchor:link {
 	border-right-color: #5CA8D6;
 	border-bottom-color: #5CA8D6;
 	border-left-color: #003366;
-	color: #000000 !important;
+	color: #000000;
 }
 
 .number {
@@ -410,13 +415,29 @@ a.anchor, a.anchor:visited, a.anchor:active, a.anchor:link {
 
 /*header start*/
 .headerborder {
+	background-color: #fff;
+	box-shadow: 1px 5px 5px #ccc;
+	margin-bottom: 15px;
+	/*padding: 10px;
 	margin-bottom: 0px;
 	padding-bottom: 5px;
 	background-image: url(../../Images/borderheader.jpg);
 	background-repeat: repeat-x;
 	background-position: left bottom;
-	background-color: #FFFFFF;
+	background-color: #FFFFFF;*/
 }
+.headerborder img {
+	padding:10px;
+}
+
+.loginForm {
+	margin-top: 50px;
+	padding-left: 20px;
+}
+
+	.loginForm .control-label {
+		width: 110px;
+	}
 
 .logocc {
 	float: left;
@@ -433,16 +454,11 @@ a.anchor, a.anchor:visited, a.anchor:active, a.anchor:link {
 	float: right;
 	width: 150px;
 	height: 90px;
-	background-image: url(bacustom/images/logo.gif);
+	background-image: url(../../BACustom/images/logo.gif);
 	background-repeat: no-repeat;
 	background-position: right top;
 }
 
-.headerlinks {
-	margin-top: 0px;
-	margin-left: 10px;
-	float: left;
-}
 
 .headertitle {
 	margin-top: 10px;
@@ -454,15 +470,40 @@ a.anchor, a.anchor:visited, a.anchor:active, a.anchor:link {
 	display: block;
 }
 
-.headerlink {
-	margin-right: 2px;
-}
 
 .dashbox {
 	margin-left: 15px;
 	margin-right: 10px;
 	padding: 5px;
 }
+
+.headerlinks {
+	padding-top: 5px;
+}
+
+ul.headerlinks > li {
+	border-right: 1px solid #ccc;
+}
+
+	ul.headerlinks > li:last-child {
+		border-right: 0px;
+	}
+
+.companyHeaderMenu {
+	padding-left: 15px;
+	margin-top: 10px;
+}
+
+	.companyHeaderMenu > div {
+		padding: 10px;
+		min-width: 400px;
+	}
+
+	.companyHeaderMenu a, .companyHeaderMenu a:link, .companyHeaderMenu a:hover, .companyHeaderMenu a:visited {
+		text-decoration: none;
+		color: #303030;
+		font-size: 18px;
+	}
 
 /*header*/
 
@@ -490,15 +531,7 @@ a.anchor, a.anchor:visited, a.anchor:active, a.anchor:link {
 
 fieldset.sectionset table {
 	margin-top: 10px;
-}
 
-textarea {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	background-color: #FFFFFF;
-	border: 1px solid #40678F !important;
-	padding: 2px;
-	margin: 0px;
 }
 
 select {
@@ -674,7 +707,6 @@ a, a:visited, a:active, a:link, a:hover {
 */
 }
 
-
 .employee {
 	padding-top: 9px;
 	padding-bottom: 9px;
@@ -787,6 +819,7 @@ a.gridlink, a.gridlink:visited, a.gridlink:active, a.gridlink:link {
 }
 
 .pinpoint {
+	display: inline;
 	vertical-align: bottom;
 	margin-left: 10px;
 	position: relative;
@@ -796,9 +829,7 @@ a.gridlink, a.gridlink:visited, a.gridlink:active, a.gridlink:link {
 }
 
 	.pinpoint img {
-		position: absolute;
-		left: 0px;
-		bottom: 5px;
+		margin-right: 5px;
 	}
 
 .small {
@@ -919,7 +950,7 @@ a.gridlink, a.gridlink:visited, a.gridlink:active, a.gridlink:link {
 		margin-right: 10px;
 		display: block;
 		vertical-align: text-top;
-		border: none none;
+		border: none;
 		background-image: url(../../Images/bulb.gif);
 		background-repeat: no-repeat;
 		padding: 0px;
@@ -1448,6 +1479,15 @@ a.btn-primary, a.btn-info, a.btn-success, a.btn-danger, a.btn-inverse {
 	color: #fff;
 }
 
+.btn.aspNetDisabled {
+	cursor: default;
+	background-image: none;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
 .btn-primary {
 	background-repeat: repeat-x;
 	background-color: #35537F;
@@ -1463,7 +1503,8 @@ a.btn-primary, a.btn-info, a.btn-success, a.btn-danger, a.btn-inverse {
 	.btn-primary:active,
 	.btn-primary.active,
 	.btn-primary.disabled,
-	.btn-primary[disabled] {
+	.btn-primary[disabled],
+	.btn-primary.aspNetDisabled {
 		color: #ffffff;
 		background-color: #35537F;
 		*background-color: #003bb3;
@@ -1484,7 +1525,8 @@ a.btn-primary, a.btn-info, a.btn-success, a.btn-danger, a.btn-inverse {
 	.btn-success:active,
 	.btn-success.active,
 	.btn-success.disabled,
-	.btn-success[disabled] {
+	.btn-success[disabled],
+	.btn-success.aspNetDisabled {
 		color: #ffffff;
 		background-color: #3C7F3C;
 		*background-color: #499249;
@@ -1592,9 +1634,20 @@ a.btn-primary, a.btn-info, a.btn-success, a.btn-danger, a.btn-inverse {
 	margin-left: 0;
 }
 
+.modal
+{
+	position: absolute;
+}
 .modal-body {
 	border-top: 5px solid #C4CED9;
 	margin: 0 15px;
+}
+.modal-body-no-border {
+  position: relative;
+  overflow-y: auto;
+  max-height: 400px;
+  padding: 15px;
+  border-top:none;
 }
 .modal-header {
 	padding-bottom:0px;
@@ -1659,6 +1712,7 @@ display:inline;
 	.cbaAlerts li>i.icon-info-sign {
 		color:#2f96b4;
 	}
+/*Tables*/
 
 	thead > tr > th {
 	font-size: 11px;
@@ -1674,4 +1728,35 @@ display:inline;
 
 th:first-child {
 	border-left:#b1becd;
+}
+.padding-buffer {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 7px;
+}
+/*Support for jqueryUI combobox*/
+.custom-combobox { position: relative; display: inline-block;}
+.custom-combobox-toggle { position: absolute; top: 0; bottom: 0; margin-left: -1px; padding: 0; /* support: IE7 */ *height: 1.7em; *top: 0.1em; }
+.custom-combobox-input { margin: 0; padding: 0.3em; background: #FFF !important; }
+.custom-combobox-toggle { width: 30px; height: 29px; background-color: #F1F1F1; border: 1px solid #CCC; }
+.ui-button ui-icon.expand-icon { background-image: url(../../Images/expand.jpg); width: 50px; height: auto; }
+.ui-button.ui-state-hover .ui-icon.expand-icon { background-image: url(Images/expand.jpg); width: 50px; height: auto;  }
+ul.ui-autocomplete { max-height: 150px; overflow-y: auto;}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+	border: 1px solid #999999;
+	background: #1D91FF url(images/ui-bg_glass_75_dadada_1x400.png) 50% 50% repeat-x;
+	color: #fff;
+}
+.form-horizontal .control-group {
+  margin-bottom: 0px;
+  padding: 10px;
+  *zoom: 1;
+}
+input:-ms-input-placeholder {
+	color:#999;
 }
